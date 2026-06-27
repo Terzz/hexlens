@@ -12,6 +12,7 @@ import SwiftUI
 ///   - shows via makeKeyAndOrderFront when LoL regains focus
 class OverlayWindowController {
     private var window: NSWindow?
+    private var hostingView: NSHostingView<OverlayView>?
     private let gameStateManager: GameStateManager
     private(set) var isInInteractiveMode = false
     private var isTabHeld = false
@@ -28,6 +29,7 @@ class OverlayWindowController {
     private func createWindow() {
         let overlayView = OverlayView(gameStateManager: gameStateManager)
         let hostingView = NSHostingView(rootView: overlayView)
+        self.hostingView = hostingView
 
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 420, height: 750),
@@ -53,27 +55,47 @@ class OverlayWindowController {
         // Prevent the overlay from being hidden when the app is deactivated
         window.hidesOnDeactivate = false
 
-        // Position: top-right of main screen, inset 20px
-        if let screen = NSScreen.main {
-            let screenFrame = screen.visibleFrame
-            let x = screenFrame.maxX - 420 - 20
-            let y = screenFrame.maxY - 750 - 20
-            window.setFrameOrigin(NSPoint(x: x, y: y))
-        }
-
-        // Restore saved position
-        if let savedX = UserDefaults.standard.object(forKey: "overlayX") as? CGFloat,
-           let savedY = UserDefaults.standard.object(forKey: "overlayY") as? CGFloat {
-            window.setFrameOrigin(NSPoint(x: savedX, y: savedY))
-        }
-
         self.window = window
+        layoutWindow()
+    }
+
+    /// Size the window to the overlay's content and anchor it to the top edge, so the
+    /// (variable-height) overlay grows downward from a fixed top-right corner instead of
+    /// being vertically centered in a fixed-height window.
+    private func layoutWindow() {
+        guard let window = window, let hostingView = hostingView,
+              let screen = window.screen ?? NSScreen.main else { return }
+        var size = hostingView.fittingSize
+        if size.width < 1 || size.height < 1 { size = NSSize(width: 420, height: 750) }
+        let visible = screen.visibleFrame
+        // Default: top-right, 20px inset. Saved drag position pins the TOP edge.
+        let topY: CGFloat
+        let x: CGFloat
+        if let savedX = UserDefaults.standard.object(forKey: "overlayX") as? CGFloat,
+           let savedTop = UserDefaults.standard.object(forKey: "overlayTop") as? CGFloat {
+            x = savedX
+            topY = savedTop
+        } else {
+            x = visible.maxX - size.width - 20
+            topY = visible.maxY - 20
+        }
+        window.setContentSize(size)
+        window.setFrameOrigin(NSPoint(x: x, y: topY - size.height))
     }
 
     /// Called when game becomes active. Overlay only shows when Tab is held.
     func showOverlay() {
         isGameActive = true
         // Don't show immediately. Wait for Tab press.
+    }
+
+    /// Demo/preview: force the overlay visible without a game or Tab (for `--demo`).
+    func showForDemo() {
+        isGameActive = true
+        isTabHeld = true
+        layoutWindow()
+        window?.alphaValue = 1
+        window?.orderFrontRegardless()
     }
 
     func hideOverlay() {
@@ -113,6 +135,7 @@ class OverlayWindowController {
     private func handleTabDown() {
         guard isGameActive, !isTabHeld else { return }
         isTabHeld = true
+        layoutWindow()   // re-fit to current content (champion/build/sections may have changed)
         window?.orderFrontRegardless()
         window?.alphaValue = 0
         NSAnimationContext.runAnimationGroup { [weak self] context in
@@ -141,10 +164,11 @@ class OverlayWindowController {
             window?.isMovableByWindowBackground = true
         } else {
             window?.isMovableByWindowBackground = false
-            // Save position when exiting drag mode
+            // Save position when exiting drag mode. Pin the TOP edge so the variable-height
+            // overlay stays anchored where the user dropped it.
             if let frame = window?.frame {
                 UserDefaults.standard.set(frame.origin.x, forKey: "overlayX")
-                UserDefaults.standard.set(frame.origin.y, forKey: "overlayY")
+                UserDefaults.standard.set(frame.maxY, forKey: "overlayTop")
             }
         }
     }

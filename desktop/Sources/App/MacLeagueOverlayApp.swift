@@ -5,6 +5,7 @@ struct MacLeagueOverlayApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     init() {
+        MainActor.assumeIsolated { DebugPreview.runIfRequested() }
         print("[Hexlens] App init")
     }
 

@@ -11,7 +11,8 @@ let package = Package(
         .executableTarget(
             name: "MacLeagueOverlay",
             dependencies: ["Starscream"],
-            path: "Sources"
+            path: "Sources",
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "MacLeagueOverlayTests",

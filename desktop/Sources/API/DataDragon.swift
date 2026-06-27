@@ -116,6 +116,21 @@ actor DataDragon {
         URL(string: "https://ddragon.leagueoflegends.com/cdn/\(version)/img/champion/\(name).png")
     }
 
+    /// Item icon URL from Data Dragon CDN. Strips the ARAM: Mayhem mode-prefix on item IDs
+    /// (e.g. 124011 -> 4011) so prefixed live-client IDs resolve to the base item icon.
+    nonisolated func itemIconURL(id: Int, version: String) -> URL? {
+        URL(string: "https://ddragon.leagueoflegends.com/cdn/\(version)/img/item/\(id % 100000).png")
+    }
+
+    /// Summoner spell icon URL by numeric spell id (for build recommendations).
+    nonisolated func summonerSpellIconURL(id: Int, version: String) -> URL? {
+        let map = [1: "SummonerBoost", 3: "SummonerExhaust", 4: "SummonerFlash", 6: "SummonerHaste",
+                   7: "SummonerHeal", 11: "SummonerSmite", 12: "SummonerTeleport", 13: "SummonerMana",
+                   14: "SummonerDot", 21: "SummonerBarrier", 32: "SummonerSnowball"]
+        guard let name = map[id] else { return nil }
+        return URL(string: "https://ddragon.leagueoflegends.com/cdn/\(version)/img/spell/\(name).png")
+    }
+
     /// Summoner spell icon URL from Data Dragon CDN.
     /// spellRawName is like "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName" → "SummonerFlash"
     nonisolated func spellIconURL(rawDisplayName: String, version: String) -> URL? {

@@ -29,6 +29,9 @@ class GameStateManager: ObservableObject {
     @Published var laneMatchups: [LaneMatchup] = []
     @Published var champSelectSession: ChampSelectSession?
     @Published var activePlayerName: String = ""
+    @Published var activeChampionName: String = ""   // display name of the active player's champion, e.g. "Miss Fortune"
+    @Published var gameMode: String = ""             // Live Client Data gameMode, e.g. "CLASSIC", "ARAM", "KIWI" (ARAM: Mayhem)
+    @Published var activeItemIDs: [Int] = []         // active player's current item IDs (drives build-aware augment recs)
     private var lastProcessedEnemies: [LivePlayer] = []
     /// Dragon buffs per team: ["ORDER": ["Cloud", "Cloud", "Fire"], "CHAOS": ["Water"]]
     private var dragonsByTeam: [String: [String]] = [:]
@@ -264,6 +267,9 @@ class GameStateManager: ObservableObject {
         // Find active player
         activePlayerName = data.activePlayer.summonerName
         let me = data.allPlayers.first { $0.summonerName == activePlayerName }
+        gameMode = data.gameData.gameMode
+        activeChampionName = me?.championName ?? ""
+        activeItemIDs = (me?.items ?? []).map { $0.itemID }
 
         // Role detection (before benchmark so benchmark uses current role)
         if let position = me?.position {
@@ -517,6 +523,9 @@ class GameStateManager: ObservableObject {
         allyTeamGold = 0
         enemyTeamGold = 0
         laneMatchups = []
+        activeChampionName = ""
+        gameMode = ""
+        activeItemIDs = []
         lastProcessedEnemies = []
         dragonsByTeam = [:]
         processedDragonEventIDs = []

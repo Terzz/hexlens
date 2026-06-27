@@ -5,32 +5,36 @@ struct OverlayView: View {
 
     @AppStorage("overlayOpacity") private var overlayOpacity: Double = 0.75
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // Player stats
-            PlayerStatsSection(gameStateManager: gameStateManager)
+    private var isMayhem: Bool {
+        AugmentDataService.isMayhem(gameMode: gameStateManager.gameMode)
+    }
 
-            // Gold scoreboard
-            GoldScoreboard(
-                allyTeamGold: gameStateManager.allyTeamGold,
-                enemyTeamGold: gameStateManager.enemyTeamGold,
-                matchups: gameStateManager.laneMatchups,
-                version: gameStateManager.dataDragonVersion
+    @ViewBuilder var body: some View {
+        if isMayhem {
+            // ARAM: Mayhem ("ARAM du Chaos") — the ATELIER layout (its own card chrome).
+            MayhemOverlayView(gameStateManager: gameStateManager)
+        } else {
+            VStack(alignment: .leading, spacing: 16) {
+                PlayerStatsSection(gameStateManager: gameStateManager)
+                GoldScoreboard(
+                    allyTeamGold: gameStateManager.allyTeamGold,
+                    enemyTeamGold: gameStateManager.enemyTeamGold,
+                    matchups: gameStateManager.laneMatchups,
+                    version: gameStateManager.dataDragonVersion
+                )
+                SpellTrackerSection(gameStateManager: gameStateManager)
+            }
+            .padding(16)
+            .frame(width: 408)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(red: 10/255, green: 10/255, blue: 26/255).opacity(overlayOpacity))
             )
-
-            // Enemy spells + ults
-            SpellTrackerSection(gameStateManager: gameStateManager)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.white.opacity(0.08), lineWidth: 1)
+            )
         }
-        .padding(24)
-        .frame(width: 420)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.black.opacity(overlayOpacity))
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
-        )
     }
 }
 
@@ -434,6 +438,261 @@ struct GoldScoreboard: View {
     }
 }
 
+// MARK: - Augment Reference (ARAM: Mayhem)
+
+/// Build-aware augment recommendations for ARAM: Mayhem ("Augment Briefing" layout).
+/// Order = real meta (arammayhem). Gold ★ = meta pick; blue "FITS BUILD" chip = synergizes with
+/// the live item build. Compliance: qualitative only, NEVER win rates.
+struct AugmentReferenceSection: View {
+    let championName: String
+    let itemIDs: [Int]
+    let version: String
+
+    private var groups: [(rarity: MayhemRarity, picks: [AugmentDataService.ScoredAugment])] {
+        AugmentDataService.shared.recommend(championName: championName, itemIDs: itemIDs, perRarity: 3)
+            .filter { !$0.picks.isEmpty }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            AugmentHeader(championName: championName, itemIDs: itemIDs, version: version)
+            Divider().background(Color.white.opacity(0.06)).padding(.vertical, 10)
+
+            if championName.isEmpty {
+                Text("Waiting for game…")
+                    .font(.system(size: 11))
+                    .foregroundStyle(Color.lolTextSecondary)
+            } else {
+                ForEach(Array(groups.enumerated()), id: \.element.rarity) { idx, group in
+                    if idx > 0 { Color.clear.frame(height: 10) }
+                    TierSection(rarity: group.rarity, picks: group.picks, isTopTier: idx == 0)
+                }
+                if let build = AugmentDataService.shared.build(forChampionName: championName) {
+                    Color.clear.frame(height: 12)
+                    BuildSection(build: build, version: version)
+                }
+            }
+        }
+        .animation(.easeInOut(duration: 0.15), value: championName)
+    }
+}
+
+/// Full Blitz ARAM build: starting items, core item path, situational, spells + skill order.
+struct BuildSection: View {
+    let build: BlitzBuilds.BlitzBuild
+    let version: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 7) {
+            HStack(spacing: 8) {
+                Text("BUILD")
+                    .font(.system(size: 9, weight: .semibold, design: .monospaced)).tracking(1.5)
+                    .foregroundStyle(Color.lolTextSecondary)
+                if build.winRate > 0 {
+                    Text("\(Int(build.winRate.rounded()))% WR")
+                        .font(.system(size: 9, weight: .medium, design: .monospaced))
+                        .foregroundStyle(Color.lolTextTertiary)
+                }
+                Rectangle().fill(Color.white.opacity(0.10)).frame(height: 1)
+            }
+
+            if !build.starting.isEmpty {
+                labeledRow("Départ", items: build.starting, size: 20)
+            }
+            if !build.core.isEmpty {
+                corePath(build.core)
+            }
+            if !build.situational.isEmpty {
+                labeledRow("Situ.", items: build.situational, size: 18)
+            }
+
+            HStack(spacing: 8) {
+                ForEach(Array(build.spells.prefix(2).enumerated()), id: \.offset) { _, sid in
+                    AugmentIcon(url: DataDragon.shared.summonerSpellIconURL(id: sid, version: version), size: 18)
+                }
+                if !build.skillMax.isEmpty {
+                    Text(build.skillMax)
+                        .font(.system(size: 11, weight: .semibold, design: .monospaced))
+                        .foregroundStyle(Color(white: 0.85))
+                }
+            }
+        }
+    }
+
+    private func labeledRow(_ label: String, items: [Int], size: CGFloat) -> some View {
+        HStack(spacing: 5) {
+            Text(label.uppercased())
+                .font(.system(size: 8, weight: .semibold, design: .monospaced)).tracking(0.5)
+                .foregroundStyle(Color.lolTextTertiary)
+                .frame(width: 44, alignment: .leading)
+            ForEach(Array(items.prefix(5).enumerated()), id: \.offset) { _, id in
+                AugmentIcon(url: DataDragon.shared.itemIconURL(id: id, version: version), size: size)
+            }
+        }
+    }
+
+    private func corePath(_ items: [Int]) -> some View {
+        HStack(spacing: 4) {
+            Text("CORE")
+                .font(.system(size: 8, weight: .semibold, design: .monospaced)).tracking(0.5)
+                .foregroundStyle(Color.lolGold.opacity(0.8))
+                .frame(width: 44, alignment: .leading)
+            ForEach(Array(items.prefix(5).enumerated()), id: \.offset) { idx, id in
+                AugmentIcon(url: DataDragon.shared.itemIconURL(id: id, version: version), size: 26)
+                if idx < min(items.count, 5) - 1 {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 7, weight: .bold))
+                        .foregroundStyle(Color.lolTextTertiary)
+                }
+            }
+        }
+    }
+}
+
+struct AugmentHeader: View {
+    let championName: String
+    let itemIDs: [Int]
+    let version: String
+
+    var body: some View {
+        HStack(spacing: 9) {
+            ChampionIcon(name: championName, version: version, size: 30)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(championName.isEmpty ? "ARAM: Mayhem" : championName)
+                    .font(.system(size: 12.5, weight: .semibold))
+                    .foregroundStyle(Color(white: 0.94))
+                Text("AUGMENTS · ARAM MAYHEM")
+                    .font(.system(size: 9.5, weight: .semibold, design: .monospaced))
+                    .tracking(1.5)
+                    .foregroundStyle(Color.lolTextSecondary)
+            }
+            Spacer()
+            if !itemIDs.isEmpty {
+                HStack(spacing: 3) {
+                    ForEach(Array(itemIDs.prefix(6).enumerated()), id: \.offset) { _, id in
+                        AugmentIcon(url: DataDragon.shared.itemIconURL(id: id, version: version), size: 18)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct TierSection: View {
+    let rarity: MayhemRarity
+    let picks: [AugmentDataService.ScoredAugment]
+    let isTopTier: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 8) {
+                Text(rarity.rawValue.uppercased())
+                    .font(.system(size: 9, weight: .semibold, design: .monospaced))
+                    .tracking(1.5)
+                    .foregroundStyle(rarity.label)
+                Rectangle().fill(rarity.label.opacity(rarity.ruleAlpha)).frame(height: 1)
+            }
+            ForEach(Array(picks.enumerated()), id: \.element.augment.id) { i, pick in
+                AugmentRow(scored: pick, rarity: rarity, isTopPick: isTopTier && i == 0)
+            }
+        }
+    }
+}
+
+struct AugmentRow: View {
+    let scored: AugmentDataService.ScoredAugment
+    let rarity: MayhemRarity
+    let isTopPick: Bool
+
+    private var iconURL: URL? {
+        scored.augment.iconUrl.isEmpty ? nil : URL(string: scored.augment.iconUrl)
+    }
+
+    var body: some View {
+        HStack(spacing: 9) {
+            AugmentIcon(url: iconURL, size: 26)
+            HStack(spacing: 4) {
+                if scored.meta {
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 9))
+                        .foregroundStyle(Color.lolGold)
+                }
+                Text(scored.augment.name)
+                    .font(.system(size: 12.5, weight: scored.meta ? .semibold : .medium))
+                    .foregroundStyle(scored.meta ? Color.lolGold : Color(white: 0.94))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+            Spacer(minLength: 6)
+            trailing
+        }
+        .frame(minHeight: 38)
+        .padding(.vertical, 4)
+        .padding(.leading, 9)
+        .background(isTopPick ? rarity.spine.opacity(0.05) : .clear)
+        .overlay(alignment: .leading) {
+            Rectangle().fill(rarity.spine).frame(width: 2)
+        }
+    }
+
+    /// Right column: build-synergy chip (FITS BUILD / PIVOT) + win rate %.
+    @ViewBuilder private var trailing: some View {
+        HStack(spacing: 6) {
+            if let chip = buildChip {
+                Text(chip.0)
+                    .font(.system(size: 9.5, weight: .semibold, design: .monospaced))
+                    .foregroundStyle(chip.1)
+            }
+            if let wr = scored.wr {
+                Text("\(Int(wr.rounded()))%")
+                    .font(.system(size: 9.5, weight: .medium, design: .monospaced))
+                    .foregroundStyle(Color.lolTextSecondary)
+            } else if buildChip == nil {
+                Text(descriptorToken)
+                    .font(.system(size: 9.5, weight: .medium, design: .monospaced))
+                    .foregroundStyle(Color.lolTextTertiary)
+            }
+        }
+        .lineLimit(1)
+    }
+
+    private var buildChip: (String, Color)? {
+        if scored.reason.hasPrefix("Matches your") { return ("FITS BUILD", Color.lolInfo) }
+        if scored.reason.hasPrefix("Build-defining") { return ("PIVOT", Color.lolYellow) }
+        return nil
+    }
+
+    private var descriptorToken: String {
+        switch scored.augment.damageType {
+        case "AD": return "AD"
+        case "AP": return "AP"
+        case "ADAPTIVE": return "ADAPT"
+        default: return scored.augment.primaryCategory.uppercased()
+        }
+    }
+}
+
+struct AugmentIcon: View {
+    let url: URL?
+    let size: CGFloat
+
+    var body: some View {
+        AsyncImage(url: url) { phase in
+            switch phase {
+            case .success(let image):
+                image.resizable().aspectRatio(contentMode: .fill)
+                    .frame(width: size, height: size)
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+            default:
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color(white: 0.15))
+                    .frame(width: size, height: size)
+            }
+        }
+        .frame(width: size, height: size)
+    }
+}
+
 // MARK: - Shared Components
 
 struct SectionHeader: View {
@@ -449,12 +708,34 @@ struct SectionHeader: View {
 
 // MARK: - Color Extensions
 
+extension MayhemRarity {
+    /// Left accent spine (rarity color; gold reduced so it never competes with the meta ★).
+    var spine: Color {
+        switch self {
+        case .prismatic: return Color(red: 127/255, green: 210/255, blue: 230/255)
+        case .gold: return Color.lolGold.opacity(0.55)
+        case .silver: return Color.white.opacity(0.16)
+        }
+    }
+    /// Section-header label color.
+    var label: Color {
+        switch self {
+        case .prismatic: return Color(red: 127/255, green: 210/255, blue: 230/255)
+        case .gold: return .lolGold
+        case .silver: return Color(red: 154/255, green: 154/255, blue: 168/255)
+        }
+    }
+    var ruleAlpha: Double { self == .silver ? 0.14 : 0.16 }
+}
+
 extension Color {
-    static let lolGold = Color(red: 200/255, green: 170/255, blue: 110/255)
-    static let lolGreen = Color(red: 74/255, green: 222/255, blue: 128/255)
-    static let lolRed = Color(red: 248/255, green: 113/255, blue: 113/255)
-    static let lolYellow = Color(red: 250/255, green: 204/255, blue: 21/255)
-    static let lolTextSecondary = Color(white: 0.53)
+    static let lolGold = Color(red: 200/255, green: 170/255, blue: 110/255)        // #c8aa6e
+    static let lolGreen = Color(red: 74/255, green: 222/255, blue: 128/255)        // #4ade80
+    static let lolRed = Color(red: 248/255, green: 113/255, blue: 113/255)         // #f87171
+    static let lolYellow = Color(red: 250/255, green: 204/255, blue: 21/255)       // #facc15
+    static let lolInfo = Color(red: 96/255, green: 165/255, blue: 250/255)         // #60a5fa
+    static let lolTextSecondary = Color(red: 136/255, green: 136/255, blue: 153/255) // #888899
+    static let lolTextTertiary = Color(red: 85/255, green: 85/255, blue: 102/255)  // #555566
     static let lolOverlayBg = Color(red: 26/255, green: 26/255, blue: 46/255)
     static let lolChampSelectBg = Color(red: 22/255, green: 33/255, blue: 62/255)
 }

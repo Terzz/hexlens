@@ -6,6 +6,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private var overlayController: OverlayWindowController?
     private var onboardingPopover: NSPopover?
+    private var permissionsWindow: NSWindow?
     private let gameStateManager = GameStateManager()
 
     private func debugLog(_ msg: String) {
@@ -25,6 +26,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         debugLog("applicationDidFinishLaunching")
+
+        // Demo/preview mode: show the real overlay with mock game state, no LoL required.
+        if CommandLine.arguments.contains("--demo") {
+            NSApp.setActivationPolicy(.regular)
+            setupMenuBar()
+            setupOverlay()
+            gameStateManager.gameMode = "KIWI"
+            gameStateManager.activeChampionName = "Nidalee"
+            gameStateManager.activeItemIDs = [3089, 3115, 6653]   // Rabadon's, Nashor's, Liandry's (AP build)
+            gameStateManager.dataDragonVersion = "16.12.1"
+            gameStateManager.playerLevel = 11
+            gameStateManager.kda = (8, 2, 6)
+            gameStateManager.currentCS = 24
+            gameStateManager.csPerMin = 2.1
+            gameStateManager.goldPerMin = 412
+            gameStateManager.killParticipation = 72
+            gameStateManager.visionPerMin = 0.8
+            let svc = AugmentDataService.shared
+            FileHandle.standardError.write("[demo] loaded augments=\(svc.catalog?.augments.count ?? -1) champions=\(svc.champions?.champions.count ?? -1) items=\(svc.items?.items.count ?? -1)\n".data(using: .utf8)!)
+            overlayController?.showForDemo()
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+
         // Background app: no Dock icon, no Cmd-Tab entry
         NSApp.setActivationPolicy(.accessory)
 
@@ -39,6 +64,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         gameStateManager.start()
         debugLog("gameStateManager started")
+
+        // First thing the user sees if the required permission is missing (e.g. after a rebuild
+        // reset it): the in-app Permissions panel with one-click grant buttons.
+        if !PermissionsManager.isGranted(.accessibility) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in self?.openPermissions() }
+        }
+    }
+
+    @objc private func openPermissions() {
+        if permissionsWindow == nil {
+            let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 380, height: 320),
+                             styleMask: [.titled, .closable], backing: .buffered, defer: false)
+            w.title = "Hexlens — Permissions"
+            w.contentViewController = NSHostingController(rootView: PermissionsView())
+            w.isReleasedWhenClosed = false
+            w.center()
+            permissionsWindow = w
+        }
+        NSApp.activate(ignoringOtherApps: true)
+        permissionsWindow?.makeKeyAndOrderFront(nil)
     }
 
     private func showOnboardingIfNeeded() {
@@ -74,6 +119,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Waiting for LoL...", action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Permissions…", action: #selector(openPermissions), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Toggle Overlay Position Mode", action: #selector(toggleOverlayMode), keyEquivalent: "p"))
         menu.addItem(NSMenuItem(title: "Settings...", action: #selector(openSettings), keyEquivalent: ","))
         menu.addItem(NSMenuItem(title: "Copy Debug Info", action: #selector(copyDebugInfo), keyEquivalent: ""))
@@ -86,6 +132,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 self?.updateMenuBarForState(state)
+                // Arm the overlay as soon as a game is detected, regardless of when the app
+                // was launched (fixes "launched mid-game → Tab does nothing").
+                if state == .inGame { self?.overlayController?.showOverlay() }
             }
             .store(in: &cancellables)
     }

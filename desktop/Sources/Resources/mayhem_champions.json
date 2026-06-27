@@ -1,0 +1,2721 @@
+{
+  "meta": {
+    "version": "16.12.1"
+  },
+  "champions": {
+    "Aatrox": {
+      "key": "266",
+      "name": "Aatrox",
+      "tags": [
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.232,
+        "ad": 0.788,
+        "on_hit": 0.255,
+        "tank": 0.51
+      }
+    },
+    "Ahri": {
+      "key": "103",
+      "name": "Ahri",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.768,
+        "ad": 0.204,
+        "ah": 0.299,
+        "tank": 0.299,
+        "pen": 0.374,
+        "mana": 0.224
+      }
+    },
+    "Akali": {
+      "key": "84",
+      "name": "Akali",
+      "tags": [
+        "Assassin"
+      ],
+      "vector": {
+        "ap": 0.661,
+        "ad": 0.413,
+        "tank": 0.322,
+        "pen": 0.537
+      }
+    },
+    "Akshan": {
+      "key": "166",
+      "name": "Akshan",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ad": 0.234,
+        "crit": 0.545,
+        "on_hit": 0.467,
+        "attack_speed": 0.467,
+        "ah": 0.078,
+        "pen": 0.389,
+        "mana": 0.234
+      }
+    },
+    "Alistar": {
+      "key": "12",
+      "name": "Alistar",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.284,
+        "ad": 0.341,
+        "ah": 0.062,
+        "tank": 0.874,
+        "mana": 0.187
+      }
+    },
+    "Ambessa": {
+      "key": "799",
+      "name": "Ambessa",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ad": 0.862,
+        "on_hit": 0.215,
+        "tank": 0.287,
+        "pen": 0.359
+      }
+    },
+    "Amumu": {
+      "key": "32",
+      "name": "Amumu",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.48,
+        "ad": 0.12,
+        "ah": 0.24,
+        "tank": 0.66,
+        "heal_shield": 0.48,
+        "mana": 0.18
+      }
+    },
+    "Anivia": {
+      "key": "34",
+      "name": "Anivia",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.882,
+        "ad": 0.066,
+        "ah": 0.292,
+        "tank": 0.292,
+        "mana": 0.219
+      }
+    },
+    "Annie": {
+      "key": "1",
+      "name": "Annie",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.7,
+        "ad": 0.103,
+        "ah": 0.432,
+        "tank": 0.185,
+        "heal_shield": 0.494,
+        "mana": 0.185
+      }
+    },
+    "Aphelios": {
+      "key": "523",
+      "name": "Aphelios",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.087,
+        "ad": 0.703,
+        "crit": 0.425,
+        "on_hit": 0.365,
+        "attack_speed": 0.365,
+        "ah": 0.061,
+        "tank": 0.122,
+        "mana": 0.182
+      }
+    },
+    "Ashe": {
+      "key": "22",
+      "name": "Ashe",
+      "tags": [
+        "Marksman",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.138,
+        "ad": 0.667,
+        "crit": 0.433,
+        "on_hit": 0.371,
+        "attack_speed": 0.371,
+        "ah": 0.062,
+        "tank": 0.186,
+        "mana": 0.186
+      }
+    },
+    "AurelionSol": {
+      "key": "136",
+      "name": "Aurelion Sol",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.872,
+        "ad": 0.159,
+        "ah": 0.317,
+        "tank": 0.238,
+        "mana": 0.238
+      }
+    },
+    "Aurora": {
+      "key": "893",
+      "name": "Aurora",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.768,
+        "ad": 0.204,
+        "ah": 0.299,
+        "tank": 0.299,
+        "pen": 0.374,
+        "mana": 0.224
+      }
+    },
+    "Azir": {
+      "key": "268",
+      "name": "Azir",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.517,
+        "ad": 0.432,
+        "crit": 0.415,
+        "on_hit": 0.356,
+        "attack_speed": 0.356,
+        "ah": 0.237,
+        "tank": 0.178,
+        "mana": 0.178
+      }
+    },
+    "Bard": {
+      "key": "432",
+      "name": "Bard",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.563,
+        "ad": 0.292,
+        "ah": 0.461,
+        "tank": 0.263,
+        "heal_shield": 0.526,
+        "mana": 0.197
+      }
+    },
+    "Belveth": {
+      "key": "200",
+      "name": "Bel'Veth",
+      "tags": [
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.645,
+        "ad": 0.572,
+        "on_hit": 0.304,
+        "tank": 0.406
+      }
+    },
+    "Blitzcrank": {
+      "key": "53",
+      "name": "Blitzcrank",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.316,
+        "ad": 0.253,
+        "ah": 0.228,
+        "tank": 0.74,
+        "heal_shield": 0.455,
+        "mana": 0.171
+      }
+    },
+    "Brand": {
+      "key": "63",
+      "name": "Brand",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.701,
+        "ad": 0.114,
+        "ah": 0.439,
+        "tank": 0.125,
+        "heal_shield": 0.502,
+        "mana": 0.188
+      }
+    },
+    "Braum": {
+      "key": "201",
+      "name": "Braum",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.312,
+        "ad": 0.234,
+        "ah": 0.218,
+        "tank": 0.764,
+        "heal_shield": 0.436,
+        "mana": 0.164
+      }
+    },
+    "Briar": {
+      "key": "233",
+      "name": "Briar",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.187,
+        "ad": 0.709,
+        "on_hit": 0.224,
+        "tank": 0.522,
+        "pen": 0.373
+      }
+    },
+    "Caitlyn": {
+      "key": "51",
+      "name": "Caitlyn",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.124,
+        "ad": 0.682,
+        "crit": 0.434,
+        "on_hit": 0.372,
+        "attack_speed": 0.372,
+        "ah": 0.062,
+        "tank": 0.124,
+        "mana": 0.186
+      }
+    },
+    "Camille": {
+      "key": "164",
+      "name": "Camille",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.192,
+        "ad": 0.653,
+        "on_hit": 0.211,
+        "ah": 0.07,
+        "tank": 0.564,
+        "pen": 0.352,
+        "mana": 0.211
+      }
+    },
+    "Cassiopeia": {
+      "key": "69",
+      "name": "Cassiopeia",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.878,
+        "ad": 0.143,
+        "ah": 0.314,
+        "tank": 0.235,
+        "mana": 0.235
+      }
+    },
+    "Chogath": {
+      "key": "31",
+      "name": "Cho'Gath",
+      "tags": [
+        "Mage",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.6,
+        "ad": 0.18,
+        "ah": 0.24,
+        "tank": 0.72,
+        "mana": 0.18
+      }
+    },
+    "Corki": {
+      "key": "42",
+      "name": "Corki",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.432,
+        "ad": 0.517,
+        "crit": 0.415,
+        "on_hit": 0.356,
+        "attack_speed": 0.356,
+        "ah": 0.237,
+        "tank": 0.178,
+        "mana": 0.178
+      }
+    },
+    "Darius": {
+      "key": "122",
+      "name": "Darius",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.059,
+        "ad": 0.652,
+        "on_hit": 0.178,
+        "ah": 0.059,
+        "tank": 0.711,
+        "mana": 0.178
+      }
+    },
+    "Diana": {
+      "key": "131",
+      "name": "Diana",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.397,
+        "ad": 0.496,
+        "on_hit": 0.223,
+        "ah": 0.074,
+        "tank": 0.595,
+        "pen": 0.372,
+        "mana": 0.223
+      }
+    },
+    "Draven": {
+      "key": "119",
+      "name": "Draven",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.059,
+        "ad": 0.711,
+        "crit": 0.415,
+        "on_hit": 0.355,
+        "attack_speed": 0.355,
+        "ah": 0.059,
+        "tank": 0.178,
+        "mana": 0.178
+      }
+    },
+    "DrMundo": {
+      "key": "36",
+      "name": "Dr. Mundo",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.327,
+        "ad": 0.393,
+        "on_hit": 0.18,
+        "tank": 0.84
+      }
+    },
+    "Ekko": {
+      "key": "245",
+      "name": "Ekko",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.711,
+        "ad": 0.335,
+        "ah": 0.322,
+        "tank": 0.241,
+        "pen": 0.402,
+        "mana": 0.241
+      }
+    },
+    "Elise": {
+      "key": "60",
+      "name": "Elise",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.65,
+        "ad": 0.358,
+        "ah": 0.31,
+        "tank": 0.387,
+        "pen": 0.387,
+        "mana": 0.232
+      }
+    },
+    "Evelynn": {
+      "key": "28",
+      "name": "Evelynn",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.752,
+        "ad": 0.292,
+        "ah": 0.321,
+        "tank": 0.161,
+        "pen": 0.402,
+        "mana": 0.241
+      }
+    },
+    "Ezreal": {
+      "key": "81",
+      "name": "Ezreal",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.456,
+        "ad": 0.503,
+        "crit": 0.42,
+        "on_hit": 0.36,
+        "attack_speed": 0.36,
+        "ah": 0.24,
+        "tank": 0.12,
+        "mana": 0.18
+      }
+    },
+    "Fiddlesticks": {
+      "key": "9",
+      "name": "Fiddlesticks",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.694,
+        "ad": 0.113,
+        "ah": 0.435,
+        "tank": 0.186,
+        "heal_shield": 0.497,
+        "mana": 0.186
+      }
+    },
+    "Fiora": {
+      "key": "114",
+      "name": "Fiora",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.121,
+        "ad": 0.751,
+        "on_hit": 0.218,
+        "ah": 0.073,
+        "tank": 0.436,
+        "pen": 0.363,
+        "mana": 0.218
+      }
+    },
+    "Fizz": {
+      "key": "105",
+      "name": "Fizz",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.436,
+        "ad": 0.535,
+        "on_hit": 0.243,
+        "ah": 0.081,
+        "tank": 0.485,
+        "pen": 0.405,
+        "mana": 0.243
+      }
+    },
+    "Galio": {
+      "key": "3",
+      "name": "Galio",
+      "tags": [
+        "Mage",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.589,
+        "ad": 0.073,
+        "ah": 0.204,
+        "tank": 0.764,
+        "mana": 0.153
+      }
+    },
+    "Gangplank": {
+      "key": "41",
+      "name": "Gangplank",
+      "tags": [
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.282,
+        "ad": 0.649,
+        "on_hit": 0.233,
+        "ah": 0.078,
+        "tank": 0.621,
+        "mana": 0.233
+      }
+    },
+    "Garen": {
+      "key": "86",
+      "name": "Garen",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.07,
+        "ad": 0.599,
+        "on_hit": 0.167,
+        "tank": 0.78
+      }
+    },
+    "Gnar": {
+      "key": "150",
+      "name": "Gnar",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.3,
+        "ad": 0.492,
+        "on_hit": 0.198,
+        "tank": 0.793
+      }
+    },
+    "Gragas": {
+      "key": "79",
+      "name": "Gragas",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.591,
+        "ad": 0.394,
+        "on_hit": 0.197,
+        "ah": 0.263,
+        "tank": 0.591,
+        "mana": 0.197
+      }
+    },
+    "Graves": {
+      "key": "104",
+      "name": "Graves",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.166,
+        "ad": 0.626,
+        "crit": 0.427,
+        "on_hit": 0.366,
+        "attack_speed": 0.366,
+        "ah": 0.061,
+        "tank": 0.305,
+        "mana": 0.183
+      }
+    },
+    "Gwen": {
+      "key": "887",
+      "name": "Gwen",
+      "tags": [
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.36,
+        "ad": 0.677,
+        "on_hit": 0.259,
+        "ah": 0.086,
+        "tank": 0.519,
+        "mana": 0.259
+      }
+    },
+    "Hecarim": {
+      "key": "120",
+      "name": "Hecarim",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.201,
+        "ad": 0.523,
+        "on_hit": 0.181,
+        "ah": 0.06,
+        "tank": 0.785,
+        "mana": 0.181
+      }
+    },
+    "Heimerdinger": {
+      "key": "74",
+      "name": "Heimerdinger",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.654,
+        "ad": 0.119,
+        "ah": 0.416,
+        "tank": 0.357,
+        "heal_shield": 0.476,
+        "mana": 0.178
+      }
+    },
+    "Hwei": {
+      "key": "910",
+      "name": "Hwei",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.77,
+        "ad": 0.431,
+        "ah": 0.369,
+        "tank": 0.092,
+        "mana": 0.277
+      }
+    },
+    "Illaoi": {
+      "key": "420",
+      "name": "Illaoi",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.163,
+        "ad": 0.553,
+        "on_hit": 0.179,
+        "ah": 0.06,
+        "tank": 0.775,
+        "mana": 0.179
+      }
+    },
+    "Irelia": {
+      "key": "39",
+      "name": "Irelia",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.331,
+        "ad": 0.622,
+        "on_hit": 0.238,
+        "ah": 0.079,
+        "tank": 0.476,
+        "pen": 0.397,
+        "mana": 0.238
+      }
+    },
+    "Ivern": {
+      "key": "427",
+      "name": "Ivern",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.625,
+        "ad": 0.187,
+        "ah": 0.437,
+        "tank": 0.312,
+        "heal_shield": 0.5,
+        "mana": 0.187
+      }
+    },
+    "Janna": {
+      "key": "40",
+      "name": "Janna",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.625,
+        "ad": 0.187,
+        "ah": 0.437,
+        "tank": 0.312,
+        "heal_shield": 0.5,
+        "mana": 0.187
+      }
+    },
+    "JarvanIV": {
+      "key": "59",
+      "name": "Jarvan IV",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.183,
+        "ad": 0.477,
+        "on_hit": 0.165,
+        "ah": 0.055,
+        "tank": 0.825,
+        "mana": 0.165
+      }
+    },
+    "Jax": {
+      "key": "24",
+      "name": "Jax",
+      "tags": [
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.42,
+        "ad": 0.587,
+        "on_hit": 0.252,
+        "ah": 0.084,
+        "tank": 0.587,
+        "mana": 0.252
+      }
+    },
+    "Jayce": {
+      "key": "126",
+      "name": "Jayce",
+      "tags": [
+        "Fighter",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.142,
+        "ad": 0.638,
+        "crit": 0.364,
+        "on_hit": 0.468,
+        "attack_speed": 0.312,
+        "ah": 0.052,
+        "tank": 0.312,
+        "mana": 0.156
+      }
+    },
+    "Jhin": {
+      "key": "202",
+      "name": "Jhin",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.403,
+        "ad": 0.552,
+        "crit": 0.417,
+        "on_hit": 0.358,
+        "attack_speed": 0.358,
+        "ah": 0.239,
+        "tank": 0.119,
+        "mana": 0.179
+      }
+    },
+    "Jinx": {
+      "key": "222",
+      "name": "Jinx",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.197,
+        "ad": 0.637,
+        "crit": 0.449,
+        "on_hit": 0.385,
+        "attack_speed": 0.385,
+        "ah": 0.064,
+        "tank": 0.128,
+        "mana": 0.192
+      }
+    },
+    "Kaisa": {
+      "key": "145",
+      "name": "Kai'Sa",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.326,
+        "ad": 0.584,
+        "crit": 0.398,
+        "on_hit": 0.341,
+        "attack_speed": 0.341,
+        "ah": 0.227,
+        "tank": 0.284,
+        "mana": 0.171
+      }
+    },
+    "Kalista": {
+      "key": "429",
+      "name": "Kalista",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.215,
+        "ad": 0.625,
+        "crit": 0.452,
+        "on_hit": 0.388,
+        "attack_speed": 0.388,
+        "ah": 0.065,
+        "tank": 0.129,
+        "mana": 0.194
+      }
+    },
+    "Karma": {
+      "key": "43",
+      "name": "Karma",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.671,
+        "ad": 0.063,
+        "ah": 0.395,
+        "tank": 0.395,
+        "heal_shield": 0.452,
+        "mana": 0.169
+      }
+    },
+    "Karthus": {
+      "key": "30",
+      "name": "Karthus",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.895,
+        "ad": 0.132,
+        "ah": 0.316,
+        "tank": 0.158,
+        "mana": 0.237
+      }
+    },
+    "Kassadin": {
+      "key": "38",
+      "name": "Kassadin",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.749,
+        "ad": 0.199,
+        "ah": 0.292,
+        "tank": 0.365,
+        "pen": 0.365,
+        "mana": 0.219
+      }
+    },
+    "Katarina": {
+      "key": "55",
+      "name": "Katarina",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.808,
+        "ad": 0.25,
+        "ah": 0.244,
+        "tank": 0.244,
+        "pen": 0.407
+      }
+    },
+    "Kayle": {
+      "key": "10",
+      "name": "Kayle",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.476,
+        "ad": 0.432,
+        "crit": 0.397,
+        "on_hit": 0.341,
+        "attack_speed": 0.341,
+        "ah": 0.227,
+        "tank": 0.341,
+        "mana": 0.17
+      }
+    },
+    "Kayn": {
+      "key": "141",
+      "name": "Kayn",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.06,
+        "ad": 0.728,
+        "on_hit": 0.197,
+        "ah": 0.066,
+        "tank": 0.525,
+        "pen": 0.328,
+        "mana": 0.197
+      }
+    },
+    "Kennen": {
+      "key": "85",
+      "name": "Kennen",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.776,
+        "ad": 0.427,
+        "ah": 0.278,
+        "tank": 0.37
+      }
+    },
+    "Khazix": {
+      "key": "121",
+      "name": "Kha'Zix",
+      "tags": [
+        "Assassin"
+      ],
+      "vector": {
+        "ap": 0.235,
+        "ad": 0.704,
+        "ah": 0.094,
+        "tank": 0.375,
+        "pen": 0.469,
+        "mana": 0.282
+      }
+    },
+    "Kindred": {
+      "key": "203",
+      "name": "Kindred",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.124,
+        "ad": 0.682,
+        "crit": 0.434,
+        "on_hit": 0.372,
+        "attack_speed": 0.372,
+        "ah": 0.062,
+        "tank": 0.124,
+        "mana": 0.186
+      }
+    },
+    "Kled": {
+      "key": "240",
+      "name": "Kled",
+      "tags": [
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.176,
+        "ad": 0.88,
+        "on_hit": 0.264,
+        "tank": 0.352
+      }
+    },
+    "KogMaw": {
+      "key": "96",
+      "name": "Kog'Maw",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.409,
+        "ad": 0.546,
+        "crit": 0.418,
+        "on_hit": 0.358,
+        "attack_speed": 0.358,
+        "ah": 0.239,
+        "tank": 0.119,
+        "mana": 0.179
+      }
+    },
+    "KSante": {
+      "key": "897",
+      "name": "K'Sante",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.261,
+        "ad": 0.41,
+        "on_hit": 0.168,
+        "ah": 0.056,
+        "tank": 0.839,
+        "mana": 0.168
+      }
+    },
+    "Leblanc": {
+      "key": "7",
+      "name": "LeBlanc",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.828,
+        "ad": 0.062,
+        "ah": 0.274,
+        "tank": 0.274,
+        "pen": 0.343,
+        "mana": 0.206
+      }
+    },
+    "LeeSin": {
+      "key": "64",
+      "name": "Lee Sin",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.205,
+        "ad": 0.698,
+        "on_hit": 0.226,
+        "tank": 0.527,
+        "pen": 0.376
+      }
+    },
+    "Leona": {
+      "key": "89",
+      "name": "Leona",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.244,
+        "ad": 0.325,
+        "ah": 0.228,
+        "tank": 0.74,
+        "heal_shield": 0.455,
+        "mana": 0.171
+      }
+    },
+    "Lillia": {
+      "key": "876",
+      "name": "Lillia",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.871,
+        "ad": 0.134,
+        "on_hit": 0.201,
+        "ah": 0.268,
+        "tank": 0.268,
+        "mana": 0.201
+      }
+    },
+    "Lissandra": {
+      "key": "127",
+      "name": "Lissandra",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.832,
+        "ad": 0.151,
+        "ah": 0.302,
+        "tank": 0.378,
+        "mana": 0.227
+      }
+    },
+    "Lucian": {
+      "key": "236",
+      "name": "Lucian",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.159,
+        "ad": 0.599,
+        "crit": 0.408,
+        "on_hit": 0.35,
+        "attack_speed": 0.35,
+        "ah": 0.058,
+        "tank": 0.292,
+        "pen": 0.292,
+        "mana": 0.175
+      }
+    },
+    "Lulu": {
+      "key": "117",
+      "name": "Lulu",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.595,
+        "ad": 0.231,
+        "ah": 0.445,
+        "tank": 0.318,
+        "heal_shield": 0.508,
+        "mana": 0.191
+      }
+    },
+    "Lux": {
+      "key": "99",
+      "name": "Lux",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.685,
+        "ad": 0.111,
+        "ah": 0.429,
+        "tank": 0.245,
+        "heal_shield": 0.49,
+        "mana": 0.184
+      }
+    },
+    "Malphite": {
+      "key": "54",
+      "name": "Malphite",
+      "tags": [
+        "Mage",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.497,
+        "ad": 0.234,
+        "ah": 0.225,
+        "tank": 0.787,
+        "mana": 0.169
+      }
+    },
+    "Malzahar": {
+      "key": "90",
+      "name": "Malzahar",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.891,
+        "ad": 0.145,
+        "ah": 0.319,
+        "tank": 0.159,
+        "mana": 0.239
+      }
+    },
+    "Maokai": {
+      "key": "57",
+      "name": "Maokai",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.376,
+        "ad": 0.188,
+        "ah": 0.226,
+        "tank": 0.734,
+        "heal_shield": 0.452,
+        "mana": 0.169
+      }
+    },
+    "MasterYi": {
+      "key": "11",
+      "name": "Master Yi",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.121,
+        "ad": 0.751,
+        "on_hit": 0.218,
+        "ah": 0.073,
+        "tank": 0.436,
+        "pen": 0.363,
+        "mana": 0.218
+      }
+    },
+    "Mel": {
+      "key": "800",
+      "name": "Mel",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.685,
+        "ad": 0.111,
+        "ah": 0.429,
+        "tank": 0.245,
+        "heal_shield": 0.49,
+        "mana": 0.184
+      }
+    },
+    "Milio": {
+      "key": "902",
+      "name": "Milio",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.678,
+        "ad": 0.123,
+        "ah": 0.432,
+        "tank": 0.247,
+        "heal_shield": 0.493,
+        "mana": 0.185
+      }
+    },
+    "MissFortune": {
+      "key": "21",
+      "name": "Miss Fortune",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.409,
+        "ad": 0.546,
+        "crit": 0.418,
+        "on_hit": 0.358,
+        "attack_speed": 0.358,
+        "ah": 0.239,
+        "tank": 0.119,
+        "mana": 0.179
+      }
+    },
+    "MonkeyKing": {
+      "key": "62",
+      "name": "Wukong",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.122,
+        "ad": 0.612,
+        "on_hit": 0.184,
+        "ah": 0.061,
+        "tank": 0.734,
+        "mana": 0.184
+      }
+    },
+    "Mordekaiser": {
+      "key": "82",
+      "name": "Mordekaiser",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.66,
+        "ad": 0.397,
+        "on_hit": 0.211,
+        "ah": 0.211,
+        "tank": 0.564
+      }
+    },
+    "Morgana": {
+      "key": "25",
+      "name": "Morgana",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.686,
+        "ad": 0.064,
+        "ah": 0.404,
+        "tank": 0.346,
+        "heal_shield": 0.461,
+        "mana": 0.173
+      }
+    },
+    "Naafiri": {
+      "key": "950",
+      "name": "Naafiri",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ad": 0.779,
+        "on_hit": 0.195,
+        "ah": 0.065,
+        "tank": 0.455,
+        "pen": 0.325,
+        "mana": 0.195
+      }
+    },
+    "Nami": {
+      "key": "267",
+      "name": "Nami",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.615,
+        "ad": 0.239,
+        "ah": 0.46,
+        "tank": 0.197,
+        "heal_shield": 0.525,
+        "mana": 0.197
+      }
+    },
+    "Nasus": {
+      "key": "75",
+      "name": "Nasus",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.299,
+        "ad": 0.478,
+        "on_hit": 0.194,
+        "ah": 0.065,
+        "tank": 0.776,
+        "mana": 0.194
+      }
+    },
+    "Nautilus": {
+      "key": "111",
+      "name": "Nautilus",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.371,
+        "ad": 0.247,
+        "ah": 0.247,
+        "tank": 0.68,
+        "heal_shield": 0.494,
+        "mana": 0.185
+      }
+    },
+    "Neeko": {
+      "key": "518",
+      "name": "Neeko",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.733,
+        "ad": 0.061,
+        "ah": 0.428,
+        "tank": 0.061,
+        "heal_shield": 0.489,
+        "mana": 0.183
+      }
+    },
+    "Nidalee": {
+      "key": "76",
+      "name": "Nidalee",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.695,
+        "ad": 0.328,
+        "ah": 0.315,
+        "tank": 0.315,
+        "pen": 0.394,
+        "mana": 0.236
+      }
+    },
+    "Nilah": {
+      "key": "895",
+      "name": "Nilah",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.259,
+        "ad": 0.672,
+        "on_hit": 0.233,
+        "ah": 0.078,
+        "tank": 0.465,
+        "pen": 0.388,
+        "mana": 0.233
+      }
+    },
+    "Nocturne": {
+      "key": "56",
+      "name": "Nocturne",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.129,
+        "ad": 0.72,
+        "on_hit": 0.212,
+        "ah": 0.071,
+        "tank": 0.495,
+        "pen": 0.354,
+        "mana": 0.212
+      }
+    },
+    "Nunu": {
+      "key": "20",
+      "name": "Nunu & Willump",
+      "tags": [
+        "Mage",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.596,
+        "ad": 0.231,
+        "ah": 0.255,
+        "tank": 0.7,
+        "mana": 0.191
+      }
+    },
+    "Olaf": {
+      "key": "2",
+      "name": "Olaf",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.155,
+        "ad": 0.59,
+        "on_hit": 0.186,
+        "ah": 0.062,
+        "tank": 0.745,
+        "mana": 0.186
+      }
+    },
+    "Orianna": {
+      "key": "61",
+      "name": "Orianna",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.642,
+        "ad": 0.199,
+        "ah": 0.453,
+        "tank": 0.194,
+        "heal_shield": 0.518,
+        "mana": 0.194
+      }
+    },
+    "Ornn": {
+      "key": "516",
+      "name": "Ornn",
+      "tags": [
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.233,
+        "ad": 0.388,
+        "ah": 0.062,
+        "tank": 0.87,
+        "mana": 0.186
+      }
+    },
+    "Pantheon": {
+      "key": "80",
+      "name": "Pantheon",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.188,
+        "ad": 0.715,
+        "on_hit": 0.226,
+        "ah": 0.075,
+        "tank": 0.452,
+        "pen": 0.376,
+        "mana": 0.226
+      }
+    },
+    "Poppy": {
+      "key": "78",
+      "name": "Poppy",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.142,
+        "ad": 0.538,
+        "on_hit": 0.17,
+        "ah": 0.057,
+        "tank": 0.793,
+        "mana": 0.17
+      }
+    },
+    "Pyke": {
+      "key": "555",
+      "name": "Pyke",
+      "tags": [
+        "Assassin",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.089,
+        "ad": 0.802,
+        "ah": 0.089,
+        "tank": 0.267,
+        "pen": 0.445,
+        "mana": 0.267
+      }
+    },
+    "Qiyana": {
+      "key": "246",
+      "name": "Qiyana",
+      "tags": [
+        "Assassin"
+      ],
+      "vector": {
+        "ap": 0.848,
+        "ah": 0.085,
+        "tank": 0.17,
+        "pen": 0.424,
+        "mana": 0.254
+      }
+    },
+    "Quinn": {
+      "key": "133",
+      "name": "Quinn",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.105,
+        "ad": 0.645,
+        "crit": 0.404,
+        "on_hit": 0.346,
+        "attack_speed": 0.346,
+        "ah": 0.058,
+        "tank": 0.231,
+        "pen": 0.289,
+        "mana": 0.173
+      }
+    },
+    "Rakan": {
+      "key": "497",
+      "name": "Rakan",
+      "tags": [
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.608,
+        "ad": 0.152,
+        "ah": 0.304,
+        "tank": 0.304,
+        "heal_shield": 0.608,
+        "mana": 0.228
+      }
+    },
+    "Rammus": {
+      "key": "33",
+      "name": "Rammus",
+      "tags": [
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.329,
+        "ad": 0.263,
+        "ah": 0.059,
+        "tank": 0.888,
+        "mana": 0.178
+      }
+    },
+    "RekSai": {
+      "key": "421",
+      "name": "Rek'Sai",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.125,
+        "ad": 0.624,
+        "on_hit": 0.187,
+        "tank": 0.749
+      }
+    },
+    "Rell": {
+      "key": "526",
+      "name": "Rell",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ah": 0.375,
+        "tank": 0.468,
+        "heal_shield": 0.749,
+        "mana": 0.281
+      }
+    },
+    "Renata": {
+      "key": "888",
+      "name": "Renata Glasc",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.661,
+        "ad": 0.107,
+        "ah": 0.414,
+        "tank": 0.355,
+        "heal_shield": 0.473,
+        "mana": 0.177
+      }
+    },
+    "Renekton": {
+      "key": "58",
+      "name": "Renekton",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.125,
+        "ad": 0.624,
+        "on_hit": 0.187,
+        "tank": 0.749
+      }
+    },
+    "Rengar": {
+      "key": "107",
+      "name": "Rengar",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.17,
+        "ad": 0.749,
+        "on_hit": 0.23,
+        "tank": 0.459,
+        "pen": 0.383
+      }
+    },
+    "Riven": {
+      "key": "92",
+      "name": "Riven",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.078,
+        "ad": 0.765,
+        "on_hit": 0.211,
+        "tank": 0.492,
+        "pen": 0.351
+      }
+    },
+    "Rumble": {
+      "key": "68",
+      "name": "Rumble",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.709,
+        "ad": 0.326,
+        "on_hit": 0.207,
+        "ah": 0.207,
+        "tank": 0.552
+      }
+    },
+    "Ryze": {
+      "key": "13",
+      "name": "Ryze",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.895,
+        "ad": 0.132,
+        "ah": 0.316,
+        "tank": 0.158,
+        "mana": 0.237
+      }
+    },
+    "Samira": {
+      "key": "360",
+      "name": "Samira",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.159,
+        "ad": 0.599,
+        "crit": 0.408,
+        "on_hit": 0.35,
+        "attack_speed": 0.35,
+        "ah": 0.058,
+        "tank": 0.292,
+        "pen": 0.292,
+        "mana": 0.175
+      }
+    },
+    "Sejuani": {
+      "key": "113",
+      "name": "Sejuani",
+      "tags": [
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.382,
+        "ad": 0.318,
+        "ah": 0.07,
+        "tank": 0.839,
+        "mana": 0.21
+      }
+    },
+    "Senna": {
+      "key": "235",
+      "name": "Senna",
+      "tags": [
+        "Marksman",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.307,
+        "ad": 0.557,
+        "crit": 0.465,
+        "on_hit": 0.399,
+        "attack_speed": 0.399,
+        "ah": 0.066,
+        "tank": 0.133,
+        "mana": 0.199
+      }
+    },
+    "Seraphine": {
+      "key": "147",
+      "name": "Seraphine",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.262,
+        "ah": 0.612,
+        "heal_shield": 0.699,
+        "mana": 0.262
+      }
+    },
+    "Sett": {
+      "key": "875",
+      "name": "Sett",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.067,
+        "ad": 0.659,
+        "on_hit": 0.182,
+        "tank": 0.727
+      }
+    },
+    "Shaco": {
+      "key": "35",
+      "name": "Shaco",
+      "tags": [
+        "Assassin"
+      ],
+      "vector": {
+        "ap": 0.424,
+        "ad": 0.566,
+        "ah": 0.099,
+        "tank": 0.396,
+        "pen": 0.495,
+        "mana": 0.297
+      }
+    },
+    "Shen": {
+      "key": "98",
+      "name": "Shen",
+      "tags": [
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.319,
+        "ad": 0.319,
+        "tank": 0.893
+      }
+    },
+    "Shyvana": {
+      "key": "102",
+      "name": "Shyvana",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.166,
+        "ad": 0.563,
+        "on_hit": 0.182,
+        "tank": 0.789
+      }
+    },
+    "Singed": {
+      "key": "27",
+      "name": "Singed",
+      "tags": [
+        "Mage",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.545,
+        "ad": 0.212,
+        "ah": 0.233,
+        "tank": 0.757,
+        "mana": 0.175
+      }
+    },
+    "Sion": {
+      "key": "14",
+      "name": "Sion",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.198,
+        "ad": 0.437,
+        "on_hit": 0.159,
+        "ah": 0.053,
+        "tank": 0.847,
+        "mana": 0.159
+      }
+    },
+    "Sivir": {
+      "key": "15",
+      "name": "Sivir",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.059,
+        "ad": 0.711,
+        "crit": 0.415,
+        "on_hit": 0.355,
+        "attack_speed": 0.355,
+        "ah": 0.059,
+        "tank": 0.178,
+        "mana": 0.178
+      }
+    },
+    "Skarner": {
+      "key": "72",
+      "name": "Skarner",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.232,
+        "ad": 0.436,
+        "on_hit": 0.167,
+        "ah": 0.056,
+        "tank": 0.835,
+        "mana": 0.167
+      }
+    },
+    "Smolder": {
+      "key": "901",
+      "name": "Smolder",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.409,
+        "ad": 0.546,
+        "crit": 0.418,
+        "on_hit": 0.358,
+        "attack_speed": 0.358,
+        "ah": 0.239,
+        "tank": 0.119,
+        "mana": 0.179
+      }
+    },
+    "Sona": {
+      "key": "37",
+      "name": "Sona",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.81,
+        "ad": 0.341,
+        "ah": 0.354,
+        "tank": 0.177,
+        "mana": 0.266
+      }
+    },
+    "Soraka": {
+      "key": "16",
+      "name": "Soraka",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.658,
+        "ad": 0.136,
+        "ah": 0.428,
+        "tank": 0.305,
+        "heal_shield": 0.489,
+        "mana": 0.183
+      }
+    },
+    "Swain": {
+      "key": "50",
+      "name": "Swain",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.661,
+        "ad": 0.107,
+        "ah": 0.414,
+        "tank": 0.355,
+        "heal_shield": 0.473,
+        "mana": 0.177
+      }
+    },
+    "Sylas": {
+      "key": "517",
+      "name": "Sylas",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.768,
+        "ad": 0.204,
+        "ah": 0.299,
+        "tank": 0.299,
+        "pen": 0.374,
+        "mana": 0.224
+      }
+    },
+    "Syndra": {
+      "key": "134",
+      "name": "Syndra",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.878,
+        "ad": 0.143,
+        "ah": 0.314,
+        "tank": 0.235,
+        "mana": 0.235
+      }
+    },
+    "TahmKench": {
+      "key": "223",
+      "name": "Tahm Kench",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.361,
+        "ad": 0.181,
+        "ah": 0.217,
+        "tank": 0.759,
+        "heal_shield": 0.434,
+        "mana": 0.163
+      }
+    },
+    "Taliyah": {
+      "key": "163",
+      "name": "Taliyah",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.671,
+        "ad": 0.063,
+        "ah": 0.395,
+        "tank": 0.395,
+        "heal_shield": 0.452,
+        "mana": 0.169
+      }
+    },
+    "Talon": {
+      "key": "91",
+      "name": "Talon",
+      "tags": [
+        "Assassin"
+      ],
+      "vector": {
+        "ap": 0.089,
+        "ad": 0.802,
+        "ah": 0.089,
+        "tank": 0.267,
+        "pen": 0.445,
+        "mana": 0.267
+      }
+    },
+    "Taric": {
+      "key": "44",
+      "name": "Taric",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.316,
+        "ad": 0.253,
+        "ah": 0.228,
+        "tank": 0.74,
+        "heal_shield": 0.455,
+        "mana": 0.171
+      }
+    },
+    "Teemo": {
+      "key": "17",
+      "name": "Teemo",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.524,
+        "ad": 0.425,
+        "crit": 0.415,
+        "on_hit": 0.356,
+        "attack_speed": 0.356,
+        "ah": 0.237,
+        "tank": 0.178,
+        "mana": 0.178
+      }
+    },
+    "Thresh": {
+      "key": "412",
+      "name": "Thresh",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.405,
+        "ad": 0.337,
+        "ah": 0.074,
+        "tank": 0.817,
+        "mana": 0.223
+      }
+    },
+    "Tristana": {
+      "key": "18",
+      "name": "Tristana",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.219,
+        "ad": 0.577,
+        "crit": 0.429,
+        "on_hit": 0.367,
+        "attack_speed": 0.367,
+        "ah": 0.061,
+        "tank": 0.184,
+        "pen": 0.306,
+        "mana": 0.184
+      }
+    },
+    "Trundle": {
+      "key": "48",
+      "name": "Trundle",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.131,
+        "ad": 0.576,
+        "on_hit": 0.177,
+        "ah": 0.059,
+        "tank": 0.765,
+        "mana": 0.177
+      }
+    },
+    "Tryndamere": {
+      "key": "23",
+      "name": "Tryndamere",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.12,
+        "ad": 0.745,
+        "on_hit": 0.216,
+        "tank": 0.504,
+        "pen": 0.36
+      }
+    },
+    "TwistedFate": {
+      "key": "4",
+      "name": "Twisted Fate",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.48,
+        "ad": 0.48,
+        "crit": 0.42,
+        "on_hit": 0.36,
+        "attack_speed": 0.36,
+        "ah": 0.24,
+        "tank": 0.12,
+        "mana": 0.18
+      }
+    },
+    "Twitch": {
+      "key": "29",
+      "name": "Twitch",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.15,
+        "ad": 0.631,
+        "crit": 0.421,
+        "on_hit": 0.361,
+        "attack_speed": 0.361,
+        "ah": 0.06,
+        "tank": 0.12,
+        "pen": 0.301,
+        "mana": 0.18
+      }
+    },
+    "Udyr": {
+      "key": "77",
+      "name": "Udyr",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.192,
+        "ad": 0.499,
+        "on_hit": 0.173,
+        "ah": 0.058,
+        "tank": 0.807,
+        "mana": 0.173
+      }
+    },
+    "Urgot": {
+      "key": "6",
+      "name": "Urgot",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.17,
+        "ad": 0.579,
+        "on_hit": 0.187,
+        "ah": 0.062,
+        "tank": 0.749,
+        "mana": 0.187
+      }
+    },
+    "Varus": {
+      "key": "110",
+      "name": "Varus",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.392,
+        "ad": 0.553,
+        "crit": 0.413,
+        "on_hit": 0.354,
+        "attack_speed": 0.354,
+        "ah": 0.236,
+        "tank": 0.177,
+        "mana": 0.177
+      }
+    },
+    "Vayne": {
+      "key": "67",
+      "name": "Vayne",
+      "tags": [
+        "Assassin",
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.052,
+        "ad": 0.693,
+        "crit": 0.401,
+        "on_hit": 0.344,
+        "attack_speed": 0.344,
+        "ah": 0.057,
+        "tank": 0.057,
+        "pen": 0.287,
+        "mana": 0.172
+      }
+    },
+    "Veigar": {
+      "key": "45",
+      "name": "Veigar",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.895,
+        "ad": 0.132,
+        "ah": 0.316,
+        "tank": 0.158,
+        "mana": 0.237
+      }
+    },
+    "Velkoz": {
+      "key": "161",
+      "name": "Vel'Koz",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.707,
+        "ad": 0.104,
+        "ah": 0.436,
+        "tank": 0.125,
+        "heal_shield": 0.499,
+        "mana": 0.187
+      }
+    },
+    "Vex": {
+      "key": "711",
+      "name": "Vex",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.514,
+        "ah": 0.686,
+        "mana": 0.514
+      }
+    },
+    "Vi": {
+      "key": "254",
+      "name": "Vi",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.2,
+        "ad": 0.679,
+        "on_hit": 0.22,
+        "ah": 0.073,
+        "tank": 0.513,
+        "pen": 0.366,
+        "mana": 0.22
+      }
+    },
+    "Viego": {
+      "key": "234",
+      "name": "Viego",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.194,
+        "ad": 0.736,
+        "on_hit": 0.232,
+        "tank": 0.465,
+        "pen": 0.387
+      }
+    },
+    "Viktor": {
+      "key": "112",
+      "name": "Viktor",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.864,
+        "ad": 0.127,
+        "ah": 0.305,
+        "tank": 0.305,
+        "mana": 0.229
+      }
+    },
+    "Vladimir": {
+      "key": "8",
+      "name": "Vladimir",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.743,
+        "ad": 0.27,
+        "on_hit": 0.203,
+        "ah": 0.203,
+        "tank": 0.541
+      }
+    },
+    "Volibear": {
+      "key": "106",
+      "name": "Volibear",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.211,
+        "ad": 0.484,
+        "on_hit": 0.174,
+        "ah": 0.058,
+        "tank": 0.811,
+        "mana": 0.174
+      }
+    },
+    "Warwick": {
+      "key": "19",
+      "name": "Warwick",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.155,
+        "ad": 0.59,
+        "on_hit": 0.186,
+        "ah": 0.062,
+        "tank": 0.745,
+        "mana": 0.186
+      }
+    },
+    "Xayah": {
+      "key": "498",
+      "name": "Xayah",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.051,
+        "ad": 0.682,
+        "crit": 0.395,
+        "on_hit": 0.339,
+        "attack_speed": 0.339,
+        "ah": 0.056,
+        "tank": 0.339,
+        "mana": 0.169
+      }
+    },
+    "Xerath": {
+      "key": "101",
+      "name": "Xerath",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.725,
+        "ad": 0.055,
+        "ah": 0.42,
+        "tank": 0.18,
+        "heal_shield": 0.48,
+        "mana": 0.18
+      }
+    },
+    "XinZhao": {
+      "key": "5",
+      "name": "Xin Zhao",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.163,
+        "ad": 0.553,
+        "on_hit": 0.179,
+        "ah": 0.06,
+        "tank": 0.775,
+        "mana": 0.179
+      }
+    },
+    "Yasuo": {
+      "key": "157",
+      "name": "Yasuo",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.267,
+        "ad": 0.693,
+        "on_hit": 0.24,
+        "tank": 0.48,
+        "pen": 0.4
+      }
+    },
+    "Yone": {
+      "key": "777",
+      "name": "Yone",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.267,
+        "ad": 0.693,
+        "on_hit": 0.24,
+        "tank": 0.48,
+        "pen": 0.4
+      }
+    },
+    "Yorick": {
+      "key": "83",
+      "name": "Yorick",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.244,
+        "ad": 0.489,
+        "on_hit": 0.183,
+        "ah": 0.061,
+        "tank": 0.794,
+        "mana": 0.183
+      }
+    },
+    "Yunara": {
+      "key": "804",
+      "name": "Yunara",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ad": 0.746,
+        "crit": 0.401,
+        "on_hit": 0.344,
+        "attack_speed": 0.344,
+        "ah": 0.057,
+        "tank": 0.115,
+        "mana": 0.172
+      }
+    },
+    "Yuumi": {
+      "key": "350",
+      "name": "Yuumi",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.82,
+        "ad": 0.345,
+        "ah": 0.358,
+        "tank": 0.09,
+        "mana": 0.269
+      }
+    },
+    "Zaahen": {
+      "key": "904",
+      "name": "Zaahen",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "vector": {
+        "ap": 0.074,
+        "ad": 0.721,
+        "on_hit": 0.199,
+        "ah": 0.066,
+        "tank": 0.53,
+        "pen": 0.331,
+        "mana": 0.199
+      }
+    },
+    "Zac": {
+      "key": "154",
+      "name": "Zac",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "vector": {
+        "ap": 0.419,
+        "ad": 0.299,
+        "on_hit": 0.18,
+        "tank": 0.838
+      }
+    },
+    "Zed": {
+      "key": "238",
+      "name": "Zed",
+      "tags": [
+        "Assassin"
+      ],
+      "vector": {
+        "ap": 0.095,
+        "ad": 0.854,
+        "tank": 0.19,
+        "pen": 0.475
+      }
+    },
+    "Zeri": {
+      "key": "221",
+      "name": "Zeri",
+      "tags": [
+        "Marksman"
+      ],
+      "vector": {
+        "ap": 0.166,
+        "ad": 0.626,
+        "crit": 0.427,
+        "on_hit": 0.366,
+        "attack_speed": 0.366,
+        "ah": 0.061,
+        "tank": 0.305,
+        "mana": 0.183
+      }
+    },
+    "Ziggs": {
+      "key": "115",
+      "name": "Ziggs",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.859,
+        "ad": 0.14,
+        "ah": 0.307,
+        "tank": 0.307,
+        "mana": 0.231
+      }
+    },
+    "Zilean": {
+      "key": "26",
+      "name": "Zilean",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.667,
+        "ad": 0.121,
+        "ah": 0.424,
+        "tank": 0.303,
+        "heal_shield": 0.485,
+        "mana": 0.182
+      }
+    },
+    "Zoe": {
+      "key": "142",
+      "name": "Zoe",
+      "tags": [
+        "Mage"
+      ],
+      "vector": {
+        "ap": 0.808,
+        "ad": 0.076,
+        "ah": 0.272,
+        "tank": 0.476,
+        "mana": 0.204
+      }
+    },
+    "Zyra": {
+      "key": "143",
+      "name": "Zyra",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "vector": {
+        "ap": 0.63,
+        "ad": 0.217,
+        "ah": 0.456,
+        "tank": 0.195,
+        "heal_shield": 0.521,
+        "mana": 0.195
+      }
+    }
+  }
+}
