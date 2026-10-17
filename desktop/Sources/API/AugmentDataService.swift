@@ -51,11 +51,19 @@ final class AugmentDataService: @unchecked Sendable {
     private let wBuild = 0.40
     private let wPivot = 0.15
 
+    /// SwiftPM's generated `Bundle.module` only looks next to the executable's bundle root (and the
+    /// build machine's .build path), so in a packaged Hexlens.app it crashes. Check Contents/Resources first.
+    private static let resourceBundle: Bundle = {
+        let name = "MacLeagueOverlay_MacLeagueOverlay.bundle"
+        if let url = Bundle.main.resourceURL?.appendingPathComponent(name), let b = Bundle(url: url) { return b }
+        return Bundle.module
+    }()
+
     init() {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         func load<T: Decodable>(_ resource: String, as type: T.Type) -> T? {
-            guard let url = Bundle.module.url(forResource: resource, withExtension: "json"),
+            guard let url = Self.resourceBundle.url(forResource: resource, withExtension: "json"),
                   let data = try? Data(contentsOf: url) else { return nil }
             return try? decoder.decode(T.self, from: data)
         }
