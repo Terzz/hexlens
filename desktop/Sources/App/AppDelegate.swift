@@ -32,17 +32,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSApp.setActivationPolicy(.regular)
             setupMenuBar()
             setupOverlay()
-            gameStateManager.gameMode = "KIWI"
-            gameStateManager.activeChampionName = "Nidalee"
-            gameStateManager.activeItemIDs = [3089, 3115, 6653]   // Rabadon's, Nashor's, Liandry's (AP build)
+            // Optional scene: `--demo classic` (Summoner's Rift) or `--demo yi` (Mayhem, on-hit build).
+            let args = CommandLine.arguments
+            let scene = args.firstIndex(of: "--demo").flatMap { $0 + 1 < args.count ? args[$0 + 1] : nil } ?? "mayhem"
             gameStateManager.dataDragonVersion = "16.12.1"
-            gameStateManager.playerLevel = 11
-            gameStateManager.kda = (8, 2, 6)
-            gameStateManager.currentCS = 24
-            gameStateManager.csPerMin = 2.1
-            gameStateManager.goldPerMin = 412
-            gameStateManager.killParticipation = 72
-            gameStateManager.visionPerMin = 0.8
+            switch scene {
+            case "classic": loadClassicDemo()
+            case "yi":
+                gameStateManager.gameMode = "KIWI"
+                gameStateManager.activeChampionName = "Master Yi"
+                gameStateManager.activeItemIDs = [3153, 6676, 3031]   // BotRK, Collector, Infinity Edge (on-hit)
+                gameStateManager.playerLevel = 14
+                gameStateManager.kda = (12, 4, 7)
+            default:
+                gameStateManager.gameMode = "KIWI"
+                gameStateManager.activeChampionName = "Nidalee"
+                gameStateManager.activeItemIDs = [3089, 3115, 6653]   // Rabadon's, Nashor's, Liandry's (AP build)
+                gameStateManager.playerLevel = 11
+                gameStateManager.kda = (8, 2, 6)
+                gameStateManager.currentCS = 24
+                gameStateManager.csPerMin = 2.1
+                gameStateManager.goldPerMin = 412
+                gameStateManager.killParticipation = 72
+                gameStateManager.visionPerMin = 0.8
+            }
             let svc = AugmentDataService.shared
             FileHandle.standardError.write("[demo] loaded augments=\(svc.catalog?.augments.count ?? -1) champions=\(svc.champions?.champions.count ?? -1) items=\(svc.items?.items.count ?? -1)\n".data(using: .utf8)!)
             overlayController?.showForDemo()
@@ -70,6 +83,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !PermissionsManager.isGranted(.accessibility) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in self?.openPermissions() }
         }
+    }
+
+    /// Mock Summoner's Rift mid-game state for `--demo classic` (screenshots, no LoL required).
+    private func loadClassicDemo() {
+        let g = gameStateManager
+        g.gameMode = "CLASSIC"
+        g.activeChampionName = "Ahri"
+        g.playerLevel = 13
+        g.kda = (7, 2, 9)
+        g.currentCS = 186
+        g.csPerMin = 8.3
+        g.goldPerMin = 468
+        g.killParticipation = 64
+        g.visionPerMin = 0.9
+        g.allyTeamGold = 38_400
+        g.enemyTeamGold = 35_150
+        g.laneMatchups = [
+            LaneMatchup(id: "TOP", position: "TOP", allyChampion: "Garen", enemyChampion: "Darius", allyGold: 7_450, enemyGold: 7_980),
+            LaneMatchup(id: "JUNGLE", position: "JUNGLE", allyChampion: "LeeSin", enemyChampion: "Viego", allyGold: 7_200, enemyGold: 6_550),
+            LaneMatchup(id: "MIDDLE", position: "MIDDLE", allyChampion: "Ahri", enemyChampion: "Syndra", allyGold: 9_100, enemyGold: 7_600),
+            LaneMatchup(id: "BOTTOM", position: "BOTTOM", allyChampion: "Jinx", enemyChampion: "Caitlyn", allyGold: 9_350, enemyGold: 8_900),
+            LaneMatchup(id: "UTILITY", position: "UTILITY", allyChampion: "Thresh", enemyChampion: "Lulu", allyGold: 5_300, enemyGold: 4_120),
+        ]
+        func spell(_ id: String, cd: TimeInterval, remaining: TimeInterval? = nil) -> SpellCooldownState {
+            SpellCooldownState(spellName: id, rawDisplayName: "GeneratedTip_SummonerSpell_\(id)_DisplayName",
+                               cooldownEnd: remaining.map { Date().addingTimeInterval($0) }, baseCooldown: cd)
+        }
+        func ult(_ remaining: TimeInterval? = nil) -> SpellCooldownState {
+            SpellCooldownState(spellName: "R", rawDisplayName: nil,
+                               cooldownEnd: remaining.map { Date().addingTimeInterval($0) }, baseCooldown: 100)
+        }
+        g.enemySpells = [
+            EnemySpellState(id: "e1", championName: "Darius", spell1: spell("SummonerFlash", cd: 300),
+                            spell2: spell("SummonerTeleport", cd: 360, remaining: 214), ult: ult(), level: 13),
+            EnemySpellState(id: "e2", championName: "Viego", spell1: spell("SummonerFlash", cd: 300, remaining: 167),
+                            spell2: spell("SummonerSmite", cd: 15), ult: ult(42), level: 12),
+            EnemySpellState(id: "e3", championName: "Syndra", spell1: spell("SummonerFlash", cd: 300),
+                            spell2: spell("SummonerDot", cd: 180), ult: ult(), level: 11),
+            EnemySpellState(id: "e4", championName: "Caitlyn", spell1: spell("SummonerFlash", cd: 300, remaining: 241),
+                            spell2: spell("SummonerHeal", cd: 240), ult: ult(), level: 12),
+            EnemySpellState(id: "e5", championName: "Lulu", spell1: spell("SummonerFlash", cd: 300),
+                            spell2: spell("SummonerExhaust", cd: 210, remaining: 88), ult: ult(61), level: 10),
+        ]
     }
 
     @objc private func openPermissions() {
