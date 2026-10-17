@@ -19,6 +19,23 @@ final class AugmentDataService: @unchecked Sendable {
     let champions: MayhemChampions?
     let items: MayhemItems?
     let buildsData: BlitzBuilds?
+    private let runeIconPaths: [Int: String]        // rune/shard id -> CommunityDragon icon path
+    private let augmentStatsById: [String: [String: MayhemAugmentStats.AugStat]]  // DDragon id -> augId -> stat
+    private static let cdragonBase = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/"
+
+    struct RuneIcons: Codable { let icons: [String: String] }
+
+    /// Per-champion ARAM: Mayhem augment stats from Blitz (the data behind its tier list).
+    struct MayhemAugmentStats: Codable {
+        let champions: [String: [String: AugStat]]
+        struct AugStat: Codable { let tier: Int; let wr: Double; let pick: Double; let games: Int }
+    }
+
+    /// CommunityDragon icon URL for a rune or stat-shard id (nil if unmapped).
+    func runeIconURL(_ id: Int) -> URL? {
+        guard let path = runeIconPaths[id] else { return nil }
+        return URL(string: path.hasPrefix("http") ? path : Self.cdragonBase + path)
+    }
 
     private let byDisplayName: [String: MayhemRecommendations.ChampionRecs]
     private let champByName: [String: MayhemChampions.ChampVec]
@@ -48,7 +65,12 @@ final class AugmentDataService: @unchecked Sendable {
         let champs = load("mayhem_champions", as: MayhemChampions.self)
         let itms = load("mayhem_items", as: MayhemItems.self)
         let blds = load("blitz_builds", as: BlitzBuilds.self)
+        let runeIcons = load("rune_icons", as: RuneIcons.self)
+        let augStats = load("mayhem_augment_stats", as: MayhemAugmentStats.self)
         recommendations = recs; catalog = cat; champions = champs; items = itms; buildsData = blds
+        runeIconPaths = Dictionary((runeIcons?.icons ?? [:]).compactMap { k, v in Int(k).map { ($0, v) } },
+                                   uniquingKeysWith: { a, _ in a })
+        augmentStatsById = augStats?.champions ?? [:]
 
         byDisplayName = Dictionary((recs?.champions.values ?? [String: MayhemRecommendations.ChampionRecs]().values)
             .map { (Self.normalize($0.name), $0) }, uniquingKeysWith: { a, _ in a })
@@ -83,9 +105,10 @@ final class AugmentDataService: @unchecked Sendable {
 
     struct ScoredAugment {
         let augment: MayhemCatalog.Augment
-        let meta: Bool          // real arammayhem meta pick (shown with a marker)
+        let meta: Bool          // top-tier (S/A) pick — shown with a marker
         let reason: String      // qualitative "why" chip
-        let wr: Double?         // win rate % (arammayhem), nil when unavailable
+        let wr: Double?         // Mayhem win rate % for this champion, nil when unavailable
+        let tier: Int?          // Blitz Mayhem tier 1(S)…5(D), nil from fallback source
     }
 
     /// Build the live stat profile B from the player's current item IDs (normalized).
@@ -105,10 +128,32 @@ final class AugmentDataService: @unchecked Sendable {
     /// the bundled recs); the live build only annotates each pick ("matches your X build").
     /// Returns top `perRarity` per rarity tier, ordered Prismatic → Gold → Silver.
     func recommend(championName: String, itemIDs: [Int], perRarity: Int = 3) -> [(rarity: MayhemRarity, picks: [ScoredAugment])] {
-        guard let recs = recommendations(forChampionName: championName) else { return [] }
         let build = buildProfile(itemIDs: itemIDs)
         let hasBuild = !build.isEmpty
 
+        // Preferred path: Blitz per-champion Mayhem augment tiers (matches blitz.gg's tier list).
+        if let id = idByDisplayName[Self.normalize(championName)], let stats = augmentStatsById[id] {
+            var out: [(MayhemRarity, [ScoredAugment])] = []
+            for tier in MayhemRarity.allCases {
+                let ranked = stats.compactMap { (idStr, st) -> (MayhemCatalog.Augment, MayhemAugmentStats.AugStat)? in
+                    guard let aid = Int(idStr), let aug = augment(id: aid), aug.rarity == tier.rawValue else { return nil }
+                    return (aug, st)
+                }
+                .filter { $0.1.games >= 150 }                       // drop sub-sample noise
+                .sorted { ($0.1.tier, -$0.1.wr) < ($1.1.tier, -$1.1.wr) }  // Blitz tier, then win rate
+                let picks = ranked.prefix(perRarity).map { (aug, st) -> ScoredAugment in
+                    let cBuild = hasBuild ? Self.cosine(build, aug.vector) : 0
+                    let reason = Self.reason(champName: championName, aug: aug, isMeta: st.tier <= 2,
+                                             cBuild: cBuild, hasBuild: hasBuild, build: build)
+                    return ScoredAugment(augment: aug, meta: st.tier <= 2, reason: reason, wr: st.wr, tier: st.tier)
+                }
+                out.append((tier, Array(picks)))
+            }
+            return out
+        }
+
+        // Fallback: bundled arammayhem meta order.
+        guard let recs = recommendations(forChampionName: championName) else { return [] }
         var out: [(MayhemRarity, [ScoredAugment])] = []
         for tier in MayhemRarity.allCases {
             let picks = (recs.byRarity[tier.rawValue] ?? []).prefix(perRarity).compactMap { pick -> ScoredAugment? in
@@ -116,7 +161,7 @@ final class AugmentDataService: @unchecked Sendable {
                 let cBuild = hasBuild ? Self.cosine(build, aug.vector) : 0
                 let reason = Self.reason(champName: championName, aug: aug, isMeta: pick.meta,
                                          cBuild: cBuild, hasBuild: hasBuild, build: build)
-                return ScoredAugment(augment: aug, meta: pick.meta, reason: reason, wr: pick.wr)
+                return ScoredAugment(augment: aug, meta: pick.meta, reason: reason, wr: pick.wr, tier: nil)
             }
             out.append((tier, Array(picks)))
         }

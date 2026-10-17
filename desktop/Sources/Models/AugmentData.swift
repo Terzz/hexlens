@@ -51,13 +51,27 @@ struct BlitzBuilds: Codable {
     struct BlitzBuild: Codable {
         let winRate: Double
         let games: Int
+        let tier: Int?            // 1 (strongest) … 5 (weakest) in Mayhem — champion standing
+        let archetype: String?    // dominant playstyle: "Tank" / "AP" / "Crit" / "Bruiser" …
+
         let starting: [Int]
         let core: [Int]
         let situational: [Int]
         let spells: [Int]
         let skillMax: String      // e.g. "Q>W>E"
+        let skillOrder: [Int]?    // level-by-level 1..18 (1=Q,2=W,3=E,4=R)
         let keystone: Int?
         let primaryTree: Int?
+        let runePage: RunePage?   // coherent recommended rune page
+
+        struct RunePage: Codable {
+            let keystone: Int?
+            let primaryTree: Int?
+            let primary: [Int]        // 3 primary minor runes
+            let secondaryTree: Int?
+            let secondary: [Int]      // 2 secondary runes
+            let shards: [Int]         // 3 stat shards (offense / flex / defense)
+        }
     }
 }
 

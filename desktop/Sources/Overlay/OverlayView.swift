@@ -12,7 +12,9 @@ struct OverlayView: View {
     @ViewBuilder var body: some View {
         if isMayhem {
             // ARAM: Mayhem ("ARAM du Chaos") — the ATELIER layout (its own card chrome).
-            MayhemOverlayView(gameStateManager: gameStateManager)
+            // Cap to ~86% of the screen so the tall panel scrolls instead of overrunning the minimap.
+            MayhemOverlayView(gameStateManager: gameStateManager,
+                              maxHeight: (NSScreen.main?.visibleFrame.height ?? 1000) * 0.86)
         } else {
             VStack(alignment: .leading, spacing: 16) {
                 PlayerStatsSection(gameStateManager: gameStateManager)
