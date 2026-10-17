@@ -17,42 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build release binary
-        run: swift build -c release
-
-      - name: Create app bundle
+      - name: Build app bundle (binary + resource bundles, ad-hoc signed)
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          mkdir -p Hexlens.app/Contents/MacOS
-          mkdir -p Hexlens.app/Contents/Resources
-          cp .build/release/MacLeagueOverlay Hexlens.app/Contents/MacOS/Hexlens
-          cat > Hexlens.app/Contents/Info.plist << 'PLIST'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>CFBundleExecutable</key>
-            <string>Hexlens</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.hexlens.app</string>
-            <key>CFBundleName</key>
-            <string>Hexlens</string>
-            <key>CFBundleVersion</key>
-            <string>VERSION_PLACEHOLDER</string>
-            <key>CFBundleShortVersionString</key>
-            <string>VERSION_PLACEHOLDER</string>
-            <key>LSUIElement</key>
-            <true/>
-            <key>LSMinimumSystemVersion</key>
-            <string>14.0</string>
-            <key>NSInputMonitoringUsageDescription</key>
-            <string>Hexlens tracks F-key presses while League of Legends is active to record enemy summoner spell cooldowns.</string>
-            <key>NSAccessibilityUsageDescription</key>
-            <string>Hexlens uses accessibility to monitor global hotkeys while League of Legends is active.</string>
-          </dict>
-          </plist>
-          PLIST
-          sed -i '' "s/VERSION_PLACEHOLDER/${VERSION}/g" Hexlens.app/Contents/Info.plist
+          VERSION="${GITHUB_REF_NAME#v}" ../scripts/make-app.sh
+          mv ../Hexlens.app Hexlens.app
 
       - name: Create entitlements
         run: |
@@ -79,7 +47,7 @@ jobs:
       - name: Sign app bundle
         if: env.APPLE_CERTIFICATE != ''
         run: |
-          codesign --deep --force --verify --verbose \
+          codesign --force --verify --verbose \
             --sign "Developer ID Application: ${{ secrets.APPLE_IDENTITY }}" \
             --options runtime \
             --entitlements entitlements.plist \

@@ -4,6 +4,7 @@
 # Resources so Bundle.module resolves in a packaged app. Ad-hoc signs so it launches cleanly.
 set -e
 cd "$(dirname "$0")/../desktop"
+VERSION="${VERSION:-$(cut -d. -f1-3 VERSION)}"
 
 echo "› swift build -c release"
 swift build -c release >/dev/null
@@ -42,8 +43,8 @@ cat > "$APP/Contents/Info.plist" <<PLIST
   <key>CFBundleIdentifier</key><string>com.hexlens.app</string>
   <key>CFBundleName</key><string>Hexlens</string>
   <key>CFBundleDisplayName</key><string>Hexlens</string>
-  <key>CFBundleVersion</key><string>0.1.0</string>
-  <key>CFBundleShortVersionString</key><string>0.1.0</string>
+  <key>CFBundleVersion</key><string>${VERSION}</string>
+  <key>CFBundleShortVersionString</key><string>${VERSION}</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   ${ICONLINE}
   <key>LSUIElement</key><true/>

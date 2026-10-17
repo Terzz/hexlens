@@ -2,6 +2,19 @@
 
 All notable changes to Hexlens will be documented in this file.
 
+## [0.2.0] - 2026-10-17
+
+### Added
+- ARAM Mayhem overlay: augment recommendations grouped by tier (Prismatic, Gold, Silver) with a highlighted best pick
+- Build-aware picks: augments that fit your current items are flagged
+- Champion build panel: skill max and level-up order, starting/core/situational items, summoner spells and runes
+- Guided permissions panel (Accessibility, Input Monitoring)
+- `--demo [classic|yi]` scenes to preview the overlay without a game
+- Python data pipeline that builds the bundled Mayhem data
+
+### Fixed
+- Release builds now bundle the app's resource files (Mayhem data) and use the app icon
+
 ## [0.1.0.0] - 2026-04-12
 
 ### Added
